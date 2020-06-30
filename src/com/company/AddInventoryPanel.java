@@ -9,7 +9,7 @@ public class AddInventoryPanel extends JPanel {
     private SwingComponents allComponents;
     private MainData allData;
     private MigLayout layout = new MigLayout(
-            "debug,fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-80[]-110[]-115[]"
+            "fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-80[]-110[]-115[]"
     );
 
     public AddInventoryPanel(SwingComponents allC, MainData allD){

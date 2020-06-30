@@ -16,11 +16,11 @@ public class SwingComponents {
     //AddInventoryPanel Components
     private JButton submmitButton = new JButton (new ImageIcon ("images/submitButton.png"));
     private JLabel addLogo = new JLabel(new ImageIcon("images/addLogo.png"));
-    private JLabel product = new JLabel ("Product: ");
-    private JLabel category = new JLabel ("Category: ");
-    private JLabel priceUnit = new JLabel ("Price Unit: ");
-    private JLabel provider = new JLabel ("Provider: ");
-    private JLabel cantidad = new JLabel ("Amount: ");
+    private JLabel product = new JLabel ("Producto: ");
+    private JLabel category = new JLabel ("Categoría: ");
+    private JLabel priceUnit = new JLabel ("Precio Venta: ");
+    private JLabel provider = new JLabel ("Proveedor: ");
+    private JLabel cantidad = new JLabel ("Cantidad: ");
     private JComboBox products = new JComboBox ();
     private JComboBox categorys = new JComboBox ();
     private JComboBox providers = new JComboBox ();

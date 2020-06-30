@@ -44,6 +44,7 @@ public class InitialPanel extends JPanel {
         allComponents.getAddModeButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                allData.setCanClose(false);
                 new AddInventoryFrame(allComponents,allData);
             }
         });
