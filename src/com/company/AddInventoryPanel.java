@@ -11,7 +11,7 @@ public class AddInventoryPanel extends JPanel {
     private SwingComponents allComponents;
     private MainData allData;
     private MigLayout layout = new MigLayout(
-            "debug,fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-130[]-190[]-125[]-125[]-150[]-125[]-125[]"
+            "fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-130[]-190[]-125[]-125[]-150[]-125[]-125[]"
     );
 
 
@@ -45,12 +45,12 @@ public class AddInventoryPanel extends JPanel {
         add (allComponents.getAmountTextField ());
         add (new JLabel(""),cellSize+",wrap");
         add (allComponents.getCategory ());
-        add (allComponents.getCategorys ());
+        add (allComponents.getCategoryComboBox());
         add (allComponents.getPriceUnit (),"align center");
         add (allComponents.getPriceUnitTextField ());
         add (new JLabel(""),cellSize+",wrap");
         add (allComponents.getProvider ());
-        add (allComponents.getProviders ());
+        add (allComponents.getProvidersComboBox());
         add (allComponents.getPrecProveLabel ());
         add (allComponents.getPriceProveedorTextField (),"wrap");
         add(new JLabel(""),cellSize);

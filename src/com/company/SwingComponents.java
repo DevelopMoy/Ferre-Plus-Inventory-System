@@ -23,19 +23,19 @@ public class SwingComponents {
     private JLabel cantidad = new JLabel ("Cantidad: ");
     private JLabel precProveLabel = new JLabel ("Precio Proveedor: ");
     private JComboBox productosComboBox = new JComboBox ();
-    private JComboBox categorys = new JComboBox ();
-    private JComboBox providers = new JComboBox ();
+    private JComboBox categoryComboBox = new JComboBox ();
+    private JComboBox providersComboBox = new JComboBox ();
     private JTextField priceUnitTextField = new JTextField ();
     private JTextField amountTextField = new JTextField ();
     private JTextField priceProveedorTextField = new JTextField ();
     private JButton plusLogo = new JButton (new ImageIcon ("images/plusLogo.png"));
     private JButton searchLogo = new JButton (new ImageIcon ("images/searchLogo.png"));
 
-
+    //ADDPRODUCTFRAME COMPONENTS
     private JLabel addProductLogo = new JLabel (new ImageIcon ("images/addProductLogo.png"));
     private JLabel nombreAddProductLabel = new JLabel ("Nombre:");
-    private JLabel codeInternoLabel = new JLabel ("Codigo Interno: ");
-    private JLabel descripcionLabel = new JLabel ("Descripcion");
+    private JLabel codeInternoLabel = new JLabel ("Código Interno: ");
+    private JLabel descripcionLabel = new JLabel ("Descripción");
     private JTextField nombreAddProductTextField = new JTextField ();
     private JTextField codigointernoTextField = new JTextField ();
     private JComboBox seccionAddProductCombobox = new JComboBox ();
@@ -167,12 +167,12 @@ public class SwingComponents {
         return productosComboBox;
     }
 
-    public JComboBox getCategorys() {
-        return categorys;
+    public JComboBox getCategoryComboBox() {
+        return categoryComboBox;
     }
 
-    public JComboBox getProviders() {
-        return providers;
+    public JComboBox getProvidersComboBox() {
+        return providersComboBox;
     }
 
     public JTextField getPriceUnitTextField() {

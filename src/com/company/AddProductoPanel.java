@@ -10,7 +10,7 @@ public class AddProductoPanel extends JPanel {
     private SwingComponents allComponents;
     private MainData allData;
     private MigLayout layout = new MigLayout(
-            "debug,fillx,filly","[][shrink,grow,fill]","[][][][][][]"
+            "fillx,filly","[][shrink,grow,fill]","[][][][][][]"
     );
     public AddProductoPanel(SwingComponents allC, MainData allD){
         allComponents=allC;
