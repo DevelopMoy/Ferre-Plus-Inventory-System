@@ -26,7 +26,8 @@ public class SwingComponents {
     private JComboBox providers = new JComboBox ();
     private JTextField priceUnitTextField = new JTextField ();
     private JTextField amountTextField = new JTextField ();
-
+    private JButton plusLogo = new JButton (new ImageIcon ("images/plusLogo.png"));
+    private JButton searchLogo = new JButton (new ImageIcon ("images/searchLogo.png"));
 
     public SwingComponents(){
         initialPanelConf();
@@ -50,6 +51,15 @@ public class SwingComponents {
         cantidad.setHorizontalAlignment(SwingConstants.CENTER);
     }
     //GETTERS
+
+
+    public JButton getSearchLogo() {
+        return searchLogo;
+    }
+
+    public JButton getPlusLogo() { return plusLogo; }
+
+    public void setPlusLogo(JButton plusLogo) {this.plusLogo = plusLogo; }
 
     public JButton getSubmmitButton() {
         return submmitButton;
