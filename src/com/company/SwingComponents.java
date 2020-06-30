@@ -21,13 +21,71 @@ public class SwingComponents {
     private JLabel priceUnit = new JLabel ("Precio Venta: ");
     private JLabel provider = new JLabel ("Proveedor: ");
     private JLabel cantidad = new JLabel ("Cantidad: ");
-    private JComboBox products = new JComboBox ();
+    private JLabel precProveLabel = new JLabel ("Precio Proveedor: ");
+    private JComboBox productosComboBox = new JComboBox ();
     private JComboBox categorys = new JComboBox ();
     private JComboBox providers = new JComboBox ();
     private JTextField priceUnitTextField = new JTextField ();
     private JTextField amountTextField = new JTextField ();
+    private JTextField priceProveedorTextField = new JTextField ();
     private JButton plusLogo = new JButton (new ImageIcon ("images/plusLogo.png"));
     private JButton searchLogo = new JButton (new ImageIcon ("images/searchLogo.png"));
+
+
+    private JLabel addProductLogo = new JLabel (new ImageIcon ("images/addProductLogo.png"));
+    private JLabel nombreAddProductLabel = new JLabel ("Nombre:");
+    private JLabel codeInternoLabel = new JLabel ("Codigo Interno: ");
+    private JLabel descripcionLabel = new JLabel ("Descripcion");
+    private JTextField nombreAddProductTextField = new JTextField ();
+    private JTextField codigointernoTextField = new JTextField ();
+    private JComboBox seccionAddProductCombobox = new JComboBox ();
+    private JTextField precioProvAddProductTextField = new JTextField ();
+    private JTextField precioVentaAddProductTextField = new JTextField ();
+    private JTextField descripcionTextField = new JTextField ();
+    private JButton aceptarAddProductButton = new JButton (new ImageIcon ("images/aceptarAdd.png"));
+    private JButton cancelarAddProductButton = new JButton ("Cancelar");
+
+    public JButton getAceptarAddProductButton() {        return aceptarAddProductButton; }
+
+    public JButton getCancelarAddProductButton() {        return cancelarAddProductButton; }
+
+    public JLabel getAddProductLogo() {        return addProductLogo; }
+
+    public JLabel getNombreAddProductLabel() {
+        return nombreAddProductLabel;
+    }
+
+    public JLabel getCodeInternoLabel() {
+        return codeInternoLabel;
+    }
+
+    public JLabel getDescripcionLabel() {
+        return descripcionLabel;
+    }
+
+    public JTextField getNombreAddProductTextField() {
+        return nombreAddProductTextField;
+    }
+
+    public JTextField getCodigointernoTextField() {
+        return codigointernoTextField;
+    }
+
+    public JComboBox getSeccionAddProductCombobox() {
+        return seccionAddProductCombobox;
+    }
+
+    public JTextField getPrecioProvAddProductTextField() {
+        return precioProvAddProductTextField;
+    }
+
+    public JTextField getPrecioVentaAddProductTextField() {
+        return precioVentaAddProductTextField;
+    }
+
+    public JTextField getDescripcionTextField() {
+        return descripcionTextField;
+    }
 
     public SwingComponents(){
         initialPanelConf();
@@ -49,9 +107,25 @@ public class SwingComponents {
         provider.setHorizontalAlignment(SwingConstants.CENTER);
         cantidad.setFont(new Font("Agency FB",Font.BOLD,38));
         cantidad.setHorizontalAlignment(SwingConstants.CENTER);
+        precProveLabel.setFont(new Font("Agency FB",Font.BOLD,38));
+        precProveLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        nombreAddProductLabel.setFont(new Font("Agency FB",Font.BOLD,38));
+        nombreAddProductLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        codeInternoLabel.setFont(new Font("Agency FB",Font.BOLD,38));
+        codeInternoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        descripcionLabel.setFont(new Font("Agency FB",Font.BOLD,38));
+        descripcionLabel.setHorizontalAlignment(SwingConstants.CENTER);
     }
     //GETTERS
 
+
+    public JLabel getPrecProveLabel() {
+        return precProveLabel;
+    }
+
+    public JTextField getPriceProveedorTextField() {
+        return priceProveedorTextField;
+    }
 
     public JButton getSearchLogo() {
         return searchLogo;
@@ -89,8 +163,8 @@ public class SwingComponents {
         return cantidad;
     }
 
-    public JComboBox getProducts() {
-        return products;
+    public JComboBox getProductosComboBox() {
+        return productosComboBox;
     }
 
     public JComboBox getCategorys() {
