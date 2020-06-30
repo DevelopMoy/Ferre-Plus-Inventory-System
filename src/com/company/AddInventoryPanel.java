@@ -9,7 +9,7 @@ public class AddInventoryPanel extends JPanel {
     private SwingComponents allComponents;
     private MainData allData;
     private MigLayout layout = new MigLayout(
-            "fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-80[]-110[]-115[]"
+            "debug,fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-80[]-110[]-115[]"
     );
 
     public AddInventoryPanel(SwingComponents allC, MainData allD){
@@ -24,7 +24,10 @@ public class AddInventoryPanel extends JPanel {
         add(allComponents.getAddLogo (),"span 2");
         add (new JLabel(""),cellSize+",wrap");
         add (allComponents.getProduct ());
-        add(allComponents.getProducts ());
+        add(allComponents.getProducts (),"split 3, align center");
+        add(allComponents.getPlusLogo (),"width 35!,height 35!");
+        add (allComponents.getSearchLogo (),"width 35!,height 45!, align center");
+
         add (allComponents.getCantidad ());
         add (allComponents.getAmountTextField ());
         add (new JLabel(""),cellSize+",wrap");
