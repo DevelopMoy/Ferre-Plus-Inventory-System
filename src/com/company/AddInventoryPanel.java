@@ -30,6 +30,12 @@ public class AddInventoryPanel extends JPanel {
                 new AddProductFrame (allComponents, allData);
             }
         });
+        allComponents.getSearchLogo ().addActionListener (new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SearchCompraFrame (allComponents,allData);
+            }
+        });
     }
 
     public void layoutConfig (){
@@ -38,7 +44,7 @@ public class AddInventoryPanel extends JPanel {
         add (new JLabel(""),cellSize+",wrap");
         add (allComponents.getProduct ());
         add(allComponents.getProductosComboBox (),"align left");
-        add(allComponents.getPlusLogo (),"width 35!,height 35!,split 3");
+            add(allComponents.getPlusLogo (),"width 35!,height 35!,split 3");
         add (allComponents.getSearchLogo (),"width 35!,height 35!, align left");
 
         add (allComponents.getCantidad (),"align center");
