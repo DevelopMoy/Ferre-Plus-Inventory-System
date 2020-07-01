@@ -48,5 +48,12 @@ public class InitialPanel extends JPanel {
                 new AddInventoryFrame(allComponents,allData);
             }
         });
+        allComponents.getSellModeButton ().addActionListener (new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                allData.setCanClose (false);
+                new VentaMainFrame (allComponents,allData);
+            }
+        });
     }
 }

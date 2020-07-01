@@ -1,5 +1,7 @@
 package com.company;
 
+import javafx.geometry.HorizontalDirection;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -44,6 +46,87 @@ public class SwingComponents {
     private JTextField descripcionTextField = new JTextField ();
     private JButton aceptarAddProductButton = new JButton (new ImageIcon ("images/aceptarAdd.png"));
     private JButton cancelarAddProductButton = new JButton ("Cancelar");
+
+
+    //SerachCompraPanel
+    private JTextField nombreSearchCompraTextField = new JTextField ();
+    private JButton searchButtonSearchCompraPanel = new JButton (new ImageIcon ("images/searchLogo.png"));
+    private JTable searchCompraJTable = new JTable ();
+    private JButton aceptarButtonSearchCompraPanel = new JButton (new ImageIcon ("images/aceptarAdd.png"));
+
+    //VentaPanelComponents
+    private JComboBox productoVentaCombobox = new JComboBox ();
+    private JButton searchVentaButton = new JButton (new ImageIcon ("images/searchLogo.png"));
+    private JButton addVentaButton = new JButton (new ImageIcon ("images/addProductLogo.png"));
+
+    private JTextField cantVentaTextField = new JTextField ();
+    private JTable ventTable = new JTable ();
+    private JButton limpiarVentaBoton = new JButton ("Limpiar");
+    private JButton ventaFinalBoton = new JButton ("Venta");
+    private JLabel contVentaLabel = new JLabel ("Productos: ");
+    private JTextField contVentaTextField = new JTextField ();
+    private JLabel totalVentaLabel = new JLabel ("Total: ");
+    private JTextField totalVentaTextField = new JTextField ();
+
+    public JComboBox getProductoVentaCombobox() {
+        return productoVentaCombobox;
+    }
+
+    public JButton getSearchVentaButton() {
+        return searchVentaButton;
+    }
+
+    public JButton getAddVentaButton() {
+        return addVentaButton;
+    }
+
+    public JTextField getCantVentaTextField() {
+        return cantVentaTextField;
+    }
+
+    public JTable getVentTable() {
+        return ventTable;
+    }
+
+    public JButton getLimpiarVentaBoton() {
+        return limpiarVentaBoton;
+    }
+
+    public JButton getVentaFinalBoton() {
+        return ventaFinalBoton;
+    }
+
+    public JLabel getContVentaLabel() {
+        return contVentaLabel;
+    }
+
+    public JTextField getContVentaTextField() {
+        return contVentaTextField;
+    }
+
+    public JLabel getTotalVentaLabel() {
+        return totalVentaLabel;
+    }
+
+    public JTextField getTotalVentaTextField() {
+        return totalVentaTextField;
+    }
+
+    public JTextField getNombreSearchCompraTextField() {
+        return nombreSearchCompraTextField;
+    }
+
+    public JButton getSearchButtonSearchCompraPanel() {
+        return searchButtonSearchCompraPanel;
+    }
+
+    public JTable getSearchCompraJTable() {
+        return searchCompraJTable;
+    }
+
+    public JButton getAceptarButtonSearchCompraPanel() {
+        return aceptarButtonSearchCompraPanel;
+    }
 
     public JButton getAceptarAddProductButton() {        return aceptarAddProductButton; }
 
@@ -115,6 +198,9 @@ public class SwingComponents {
         codeInternoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         descripcionLabel.setFont(new Font("Agency FB",Font.BOLD,38));
         descripcionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+
+
     }
     //GETTERS
 
