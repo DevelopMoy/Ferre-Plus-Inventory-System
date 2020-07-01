@@ -8,13 +8,16 @@ import java.sql.Statement;
 public class MainData {
     private Statement mainStatementDB;
     public MainData (){
+        initConnectionToDB();
+    }
+
+    public void initConnectionToDB (){
         try {
             Connection conectionDataB= DriverManager.getConnection("jdbc:mysql://localhost:3306/upndowndatabase","root","");
             mainStatementDB = conectionDataB.createStatement();
         }catch (Exception e){
             System.out.println("ERROR AL CONECTARSE A LA BASE DE DATOS: "+e.getMessage());
         }
-
     }
 
     public Statement getMainStatementDB() {
@@ -23,16 +26,6 @@ public class MainData {
 
     public void setMainStatementDB(Statement mainStatementDB) {
         this.mainStatementDB = mainStatementDB;
-    }
-
-    private boolean canClose=true; //VERIFFY IF THE USER CAN CLOSE THE MAIN WINDOW
-
-    public boolean isCanClose() {
-        return canClose;
-    }
-
-    public void setCanClose(boolean canClose) {
-        this.canClose = canClose;
     }
 
 }

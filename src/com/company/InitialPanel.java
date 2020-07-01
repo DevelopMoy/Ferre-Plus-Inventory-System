@@ -10,11 +10,13 @@ public class InitialPanel extends JPanel {
     private final String cellSize = "width 150!,height 140!";
     private SwingComponents allComponents;
     private MainData allData;
+    private JFrame parentFrame;
     private MigLayout layout = new MigLayout(
             "fillx,filly","[][shrink,grow,fill][shrink,grow,fill][]","[][][][]"
     );
 
-    public InitialPanel (SwingComponents allC, MainData allD){
+    public InitialPanel (SwingComponents allC, MainData allD,JFrame parentFrame){
+        this.parentFrame=parentFrame;
         allComponents=allC;
         allData=allD;
         setLayout(layout);
@@ -44,14 +46,14 @@ public class InitialPanel extends JPanel {
         allComponents.getAddModeButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                allData.setCanClose(false);
+                parentFrame.dispose();
                 new AddInventoryFrame(allComponents,allData);
             }
         });
         allComponents.getSellModeButton ().addActionListener (new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
-                allData.setCanClose (false);
+                parentFrame.dispose();
                 new VentaMainFrame (allComponents,allData);
             }
         });

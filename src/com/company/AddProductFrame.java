@@ -8,10 +8,11 @@ import java.awt.event.WindowEvent;
 public class AddProductFrame extends JFrame {
     private AddInventoryPanel mainPanel;
     private MainData allData;
+    private JFrame superComp;
 
     public AddProductFrame(SwingComponents allC,MainData allD){
         allData=allD;
-        this.addWindowListener(new AddProductFrame.WindowEvents (this));
+        superComp=this;
         super.setSize(new Dimension (600,450));
         super.setResizable (false);
         super.setTitle("Ferre-plus: Add-Product");
@@ -21,14 +22,4 @@ public class AddProductFrame extends JFrame {
         super.setVisible(true);
     }
 
-    private class WindowEvents extends WindowAdapter {
-        private JFrame superComp;
-        public WindowEvents (JFrame e){
-            superComp=e;
-        }
-        @Override
-        public void windowClosing (WindowEvent e){
-            allData.setCanClose(true);
-        }
-    }
 }

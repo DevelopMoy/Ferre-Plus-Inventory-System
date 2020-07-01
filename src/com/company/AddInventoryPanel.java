@@ -10,18 +10,19 @@ public class AddInventoryPanel extends JPanel {
     private final String cellSize = "width 150!,height 140!";
     private SwingComponents allComponents;
     private MainData allData;
+    private JFrame parentFrame;
+
     private MigLayout layout = new MigLayout(
             "fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-130[]-190[]-125[]-125[]-150[]-125[]-125[]"
     );
 
-
-    public AddInventoryPanel(SwingComponents allC, MainData allD){
+    public AddInventoryPanel(SwingComponents allC, MainData allD, JFrame parentFrame){
+        this.parentFrame=parentFrame;
         allComponents=allC;
         allData=allD;
         setLayout(layout);
         layoutConfig ();
         configEvents ();
-
     }
     private void configEvents() {
         allComponents.getPlusLogo ().addActionListener (new ActionListener () {
@@ -34,6 +35,13 @@ public class AddInventoryPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new SearchCompraFrame (allComponents,allData);
+            }
+        });
+        allComponents.getGoHomeButtonInventory().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                parentFrame.dispose();
+                new MainWindow();
             }
         });
     }
@@ -62,5 +70,6 @@ public class AddInventoryPanel extends JPanel {
         add(new JLabel(""),cellSize);
         add (allComponents.getSubmmitButton (),"width 280!,height 80!,span 2,align center");
         add (new JLabel(""),cellSize);
+        add(allComponents.getGoHomeButtonInventory(),"growx");
     }
 }

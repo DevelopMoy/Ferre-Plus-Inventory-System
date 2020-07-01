@@ -1,7 +1,5 @@
 package com.company;
 
-import javafx.geometry.HorizontalDirection;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -32,7 +30,7 @@ public class SwingComponents {
     private JTextField priceProveedorTextField = new JTextField ();
     private JButton plusLogo = new JButton (new ImageIcon ("images/plusLogo.png"));
     private JButton searchLogo = new JButton (new ImageIcon ("images/searchLogo.png"));
-
+    private JButton goHomeButtonInventory = new JButton("GO HOME");
     //ADDPRODUCTFRAME COMPONENTS
     private JLabel addProductLogo = new JLabel (new ImageIcon ("images/addProductLogo.png"));
     private JLabel nombreAddProductLabel = new JLabel ("Nombre:");
@@ -58,7 +56,7 @@ public class SwingComponents {
     private JComboBox productoVentaCombobox = new JComboBox ();
     private JButton searchVentaButton = new JButton (new ImageIcon ("images/searchLogo.png"));
     private JButton addVentaButton = new JButton (new ImageIcon ("images/addProductLogo.png"));
-
+    private JButton goHomeButtonVenta = new JButton("GO HOME");
     private JTextField cantVentaTextField = new JTextField ();
     private JTable ventTable = new JTable ();
     private JButton limpiarVentaBoton = new JButton ("Limpiar");
@@ -67,6 +65,10 @@ public class SwingComponents {
     private JTextField contVentaTextField = new JTextField ();
     private JLabel totalVentaLabel = new JLabel ("Total: ");
     private JTextField totalVentaTextField = new JTextField ();
+
+    public JButton getGoHomeButtonInventory() {
+        return goHomeButtonInventory;
+    }
 
     public JComboBox getProductoVentaCombobox() {
         return productoVentaCombobox;
