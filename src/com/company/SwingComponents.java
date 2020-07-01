@@ -2,6 +2,7 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 //This class will contain all the components used by the GUI
 public class SwingComponents {
@@ -31,20 +32,20 @@ public class SwingComponents {
     private JButton plusLogo = new JButton (new ImageIcon ("images/plusLogo.png"));
     private JButton searchLogo = new JButton (new ImageIcon ("images/searchLogo.png"));
     private JButton goHomeButtonInventory = new JButton("GO HOME");
+
     //ADDPRODUCTFRAME COMPONENTS
     private JLabel addProductLogo = new JLabel (new ImageIcon ("images/addProductLogo.png"));
     private JLabel nombreAddProductLabel = new JLabel ("Nombre:");
     private JLabel codeInternoLabel = new JLabel ("Código Interno: ");
     private JLabel descripcionLabel = new JLabel ("Descripción");
-    private JTextField nombreAddProductTextField = new JTextField ();
-    private JTextField codigointernoTextField = new JTextField ();
+    private JTextField nombreAddProductTextField = new JTextField ();//
+    private JTextField codigointernoTextField = new JTextField ();//
     private JComboBox seccionAddProductCombobox = new JComboBox ();
-    private JTextField precioProvAddProductTextField = new JTextField ();
-    private JTextField precioVentaAddProductTextField = new JTextField ();
+    private JTextField precioProvAddProductTextField = new JTextField ();//
+    private JTextField precioVentaAddProductTextField = new JTextField ();//
     private JTextField descripcionTextField = new JTextField ();
     private JButton aceptarAddProductButton = new JButton (new ImageIcon ("images/aceptarAdd.png"));
     private JButton cancelarAddProductButton = new JButton ("Cancelar");
-
 
     //SerachCompraPanel
     private JTextField nombreSearchCompraTextField = new JTextField ();

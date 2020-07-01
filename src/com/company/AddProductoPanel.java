@@ -1,9 +1,12 @@
 package com.company;
 
+import jdk.nashorn.internal.scripts.JO;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -48,14 +51,68 @@ public class AddProductoPanel extends JPanel {
         add (allComponents.getCategory ());
         add (allComponents.getSeccionAddProductCombobox (),"wrap");
         add (allComponents.getPrecProveLabel ());
-        add (allComponents.getPriceProveedorTextField (),"wrap");
+        add (allComponents.getPrecioProvAddProductTextField (),"wrap");
         add (allComponents.getPriceUnit ());
         add (allComponents.getPrecioVentaAddProductTextField (),"wrap");
         add (allComponents.getDescripcionLabel ());
         add (allComponents.getDescripcionTextField (),"wrap");
         add (allComponents.getAceptarAddProductButton (),"span 2, align center");
     }
-    private void configEvents(){
+    private boolean isValidated (){
+        if (allComponents.getNombreAddProductTextField().getText().compareTo("")!=0){
+            if (allComponents.getCodigointernoTextField().getText().compareTo("")!=0){
+                if (allComponents.getPrecioVentaAddProductTextField().getText().compareTo("")!=0){
+                    if (allComponents.getPrecioProvAddProductTextField().getText().compareTo("")!=0){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    private int getCategoria (String aux){
+         try{
+             ResultSet idResult=allData.getMainStatementDB().executeQuery("SELECT IDSeccion FROM seccion WHERE NombreSeccion='"+aux+"'");
+             idResult.next();
+             return Integer.parseInt(idResult.getString(1));
+         } catch (Exception throwables) {
+             JOptionPane.showMessageDialog(thisComp,"ERROR: "+throwables.getMessage());
+         }
+         return 0;
+    }
+    private void validateNumbers ()throws Exception {
 
+    }
+    private void configEvents(){
+        allComponents.getAceptarAddProductButton().addActionListener(new ActionListener() {
+            @Override
+
+            public void actionPerformed(ActionEvent e) {
+                String nombre, codInter,idCateg,precProv,precVent,descr;
+                if (isValidated()){
+                    nombre=allComponents.getNombreAddProductTextField().getText();
+                    codInter=allComponents.getCodigointernoTextField().getText();
+                    idCateg=String.valueOf(getCategoria((String)allComponents.getSeccionAddProductCombobox().getSelectedItem()));
+                    precProv=allComponents.getPrecioProvAddProductTextField().getText();
+                    precVent=allComponents.getPrecioVentaAddProductTextField().getText();
+                    descr=allComponents.getDescripcionTextField().getText();
+                    try {
+                        validateNumbers();
+                        allData.getMainStatementDB().executeUpdate("INSERT INTO productos VALUES (DEFAULT,'"+nombre+"','"+codInter+"',DEFAULT,"+idCateg+","+precProv+","+precVent+",'"+descr+"')");
+                        allData.actualizarArrayProductos();
+                        allComponents.getNombreAddProductTextField().setText("");
+                        allComponents.getCodigointernoTextField().setText("");
+                        allComponents.getPrecioProvAddProductTextField().setText("");
+                        allComponents.getPrecioVentaAddProductTextField().setText("");
+                        allComponents.getDescripcionTextField().setText("");
+                    } catch (Exception throwables) {
+                        JOptionPane.showMessageDialog(thisComp,"ERROR EN CONSULTA BD: "+throwables.getMessage());
+                    }
+
+                }else {
+                    JOptionPane.showMessageDialog(thisComp,"ERROR, VERIFIQUE LOS DATOS E INTENTE NUEVAMENTE");
+                }
+            }
+        });
     }
 }
