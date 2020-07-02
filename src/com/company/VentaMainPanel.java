@@ -11,7 +11,7 @@ public class VentaMainPanel extends JPanel {
     private SwingComponents allComponents;
     private MainData allData;
     private MigLayout layout = new MigLayout(
-            "debug,fillx,filly","[][shrink,grow,fill][]","[][][][]"
+            "fillx,filly","[][shrink,grow,fill][][]","-35[top,fill]-40[][][][][]-50[fill]-15"
     );
     private JFrame parentFrame;
 
@@ -34,22 +34,28 @@ public class VentaMainPanel extends JPanel {
         });
     }
     public void layoutConfig(){
+        add (allComponents.getSellModeLogo (), "align center,span 4, wrap");
        add(allComponents.getProduct ());
        add(allComponents.getProductoVentaCombobox (),"split 3");
-       add(allComponents.getSearchVentaButton ());
-       add (allComponents.getAddVentaButton (),"wrap");
+       add(allComponents.getSearchVentaButton (),"width 35!,height 35!");
+       add (allComponents.getAddVentaButton (),"width 35!,height 35!");
        add (allComponents.getCantidad ());
-       add (allComponents.getCantVentaTextField ());
+       add (allComponents.getCantVentaTextField (),"width 80!,height 30!,wrap");
+      //  add (new JLabel (""),"wrap");
+       add (allComponents.getVentTable (), "span 2 3");
+       add (allComponents.getLimpiarVentaBoton (),"align center,span 2 2 ,wrap");
         add (new JLabel (""),"wrap");
-       add (allComponents.getVentTable (), "span 2 2");
-       add (allComponents.getLimpiarVentaBoton (),"wrap");
-       add (new JLabel (""),"wrap");
-        add (new JLabel (""),"split 2");
-       add (allComponents.getContVentaLabel ());
-       add (allComponents.getContVentaTextField ());
-       add (allComponents.getTotalVentaLabel (),"split 2");
+       add (allComponents.getQuitarVentanaBoton (),"align center, span 2 ,wrap");
+       //add (new JLabel (""),"wrap");
+       add (new JLabel (""),"width 80!,height 30!, split 2");
+       add (allComponents.getContVentaLabel (),"width 80!,height 30!");
+       add (allComponents.getContVentaTextField (),"split 3");
+       add (allComponents.getTotalVentaLabel (),"width 50!,height 30!,");
        add (allComponents.getTotalVentaTextField ());
-       add(allComponents.getGoHomeButtonInventory());
+       add(allComponents.getGoHomeButtonVenta (),"span 2, align center,wrap");
+       add (allComponents.getTerminarVentaBoton (),"width 300!,height 80!,span ,align center");
+
+
     }
 
 }

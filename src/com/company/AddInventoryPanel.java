@@ -78,9 +78,10 @@ public class AddInventoryPanel extends JPanel {
         add (allComponents.getProvidersComboBox());
         add (allComponents.getPrecProveLabel ());
         add (allComponents.getPriceProveedorTextField (),"wrap");
-        add(new JLabel(""),cellSize);
+        add(allComponents.getGoHomeButtonInventory(),"width 58!,height 58!, align left,growx");
+        //add(new JLabel(""),cellSize);
         add (allComponents.getSubmmitButton (),"width 280!,height 80!,span 2,align center");
         add (new JLabel(""),cellSize);
-        add(allComponents.getGoHomeButtonInventory(),"growx");
+
     }
 }

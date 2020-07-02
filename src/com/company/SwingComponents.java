@@ -31,7 +31,7 @@ public class SwingComponents {
     private JTextField priceProveedorTextField = new JTextField ();
     private JButton plusLogo = new JButton (new ImageIcon ("images/plusLogo.png"));
     private JButton searchLogo = new JButton (new ImageIcon ("images/searchLogo.png"));
-    private JButton goHomeButtonInventory = new JButton("GO HOME");
+    private JButton goHomeButtonInventory = new JButton(new ImageIcon ("images/homeBoton.png"));
 
     //ADDPRODUCTFRAME COMPONENTS
     private JLabel addProductLogo = new JLabel (new ImageIcon ("images/addProductLogo.png"));
@@ -54,18 +54,29 @@ public class SwingComponents {
     private JButton aceptarButtonSearchCompraPanel = new JButton (new ImageIcon ("images/aceptarAdd.png"));
 
     //VentaPanelComponents
+    private JLabel sellModeLogo = new JLabel (new ImageIcon ("images/sellLogo.png"));
     private JComboBox productoVentaCombobox = new JComboBox ();
     private JButton searchVentaButton = new JButton (new ImageIcon ("images/searchLogo.png"));
-    private JButton addVentaButton = new JButton (new ImageIcon ("images/addProductLogo.png"));
-    private JButton goHomeButtonVenta = new JButton("GO HOME");
+    private JButton addVentaButton = new JButton (new ImageIcon ("images/plusLogo.png"));
+    private JButton goHomeButtonVenta = new JButton(new ImageIcon ("images/homeBoton.png"));
     private JTextField cantVentaTextField = new JTextField ();
     private JTable ventTable = new JTable ();
     private JButton limpiarVentaBoton = new JButton ("Limpiar");
+    private JButton quitarVentanaBoton = new JButton ("Quitar");
     private JButton ventaFinalBoton = new JButton ("Venta");
     private JLabel contVentaLabel = new JLabel ("Productos: ");
     private JTextField contVentaTextField = new JTextField ();
     private JLabel totalVentaLabel = new JLabel ("Total: ");
     private JTextField totalVentaTextField = new JTextField ();
+    private JButton terminarVentaBoton = new JButton (new ImageIcon ("images/terminarVentaBoton.png"));
+
+    public JButton getTerminarVentaBoton() {
+        return terminarVentaBoton;
+    }
+
+    public JLabel getSellModeLogo() {
+        return sellModeLogo;
+    }
 
     public JButton getGoHomeButtonInventory() {
         return goHomeButtonInventory;
@@ -73,6 +84,14 @@ public class SwingComponents {
 
     public JComboBox getProductoVentaCombobox() {
         return productoVentaCombobox;
+    }
+
+    public JButton getGoHomeButtonVenta() {
+        return goHomeButtonVenta;
+    }
+
+    public JButton getQuitarVentanaBoton() {
+        return quitarVentanaBoton;
     }
 
     public JButton getSearchVentaButton() {
