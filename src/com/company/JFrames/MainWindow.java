@@ -1,11 +1,11 @@
-package com.company;
+package com.company.JFrames;
 
-import oracle.jrockit.jfr.JFR;
+import com.company.JPanels.InitialPanel;
+import com.company.MainData;
+import com.company.SwingComponents;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class MainWindow extends JFrame {
     private SwingComponents allComponents = new SwingComponents();

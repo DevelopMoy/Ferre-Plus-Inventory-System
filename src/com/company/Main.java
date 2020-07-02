@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.JFrames.MainWindow;
 import mdlaf.MaterialLookAndFeel;
 
 import javax.swing.*;

@@ -8,6 +8,9 @@ public class MainData {
     private Statement mainStatementDB; //CONECTOR PARA BASE DE DATOS
     //ARREGLOS PANEL INVENTRY ADD Y ADD PANEL
     private ArrayList <String> nombreProductosParaCBox;
+    //VARIABLES DE SECCION ACTUAL Y PROVEEDOR ACTUAL PARA EL PANEL ADDINVENTORY
+    private String IDSeccionActualInvent="";
+    private String IDProveedorActualInvent="";
 
     public MainData (){
         initConnectionToDB();

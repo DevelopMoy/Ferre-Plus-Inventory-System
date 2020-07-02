@@ -1,5 +1,8 @@
-package com.company;
+package com.company.JPanels;
 
+import com.company.MainData;
+import com.company.JFrames.MainWindow;
+import com.company.SwingComponents;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -25,7 +28,7 @@ public class VentaMainPanel extends JPanel {
     }
 
     public void configEvents (){
-        allComponents.getGoHomeButtonInventory().addActionListener(new ActionListener() {
+        allComponents.getGoHomeButtonVenta().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 parentFrame.dispose();

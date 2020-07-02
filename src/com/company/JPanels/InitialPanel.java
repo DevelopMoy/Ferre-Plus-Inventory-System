@@ -1,5 +1,9 @@
-package com.company;
+package com.company.JPanels;
 
+import com.company.JFrames.AddInventoryFrame;
+import com.company.JFrames.VentaMainFrame;
+import com.company.MainData;
+import com.company.SwingComponents;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -54,7 +58,7 @@ public class InitialPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 parentFrame.dispose();
-                new VentaMainFrame (allComponents,allData);
+                new VentaMainFrame(allComponents,allData);
             }
         });
     }

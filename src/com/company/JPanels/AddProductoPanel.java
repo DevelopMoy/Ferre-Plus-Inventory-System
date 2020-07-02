@@ -1,5 +1,7 @@
-package com.company;
+package com.company.JPanels;
 
+import com.company.MainData;
+import com.company.SwingComponents;
 import jdk.nashorn.internal.scripts.JO;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -80,7 +82,13 @@ public class AddProductoPanel extends JPanel {
          }
          return 0;
     }
-    private void validateNumbers ()throws Exception {
+    private void validateNumbers (String dobleX,String dobleY)throws Exception {
+        try {
+            Double y1=Double.parseDouble(dobleX);
+            y1=Double.parseDouble(dobleY);
+        }catch (Exception exc){
+            throw new Exception("Ingrese solamente numeros en los campos de precio.");
+        }
 
     }
     private void configEvents(){
@@ -97,7 +105,7 @@ public class AddProductoPanel extends JPanel {
                     precVent=allComponents.getPrecioVentaAddProductTextField().getText();
                     descr=allComponents.getDescripcionTextField().getText();
                     try {
-                        validateNumbers();
+                        validateNumbers(precProv,precVent);
                         allData.getMainStatementDB().executeUpdate("INSERT INTO productos VALUES (DEFAULT,'"+nombre+"','"+codInter+"',DEFAULT,"+idCateg+","+precProv+","+precVent+",'"+descr+"')");
                         allData.actualizarArrayProductos();
                         allComponents.getNombreAddProductTextField().setText("");
@@ -106,7 +114,7 @@ public class AddProductoPanel extends JPanel {
                         allComponents.getPrecioVentaAddProductTextField().setText("");
                         allComponents.getDescripcionTextField().setText("");
                     } catch (Exception throwables) {
-                        JOptionPane.showMessageDialog(thisComp,"ERROR EN CONSULTA BD: "+throwables.getMessage());
+                        JOptionPane.showMessageDialog(thisComp,"ERROR AL INGRESAR PRODUCTO: "+throwables.getMessage());
                     }
 
                 }else {
