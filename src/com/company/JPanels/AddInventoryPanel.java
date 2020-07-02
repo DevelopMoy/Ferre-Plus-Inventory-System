@@ -129,7 +129,6 @@ public class AddInventoryPanel extends JPanel {
         add(allComponents.getProductosComboBox (),"align left");
             add(allComponents.getPlusLogo (),"width 35!,height 35!,split 3");
         add (allComponents.getSearchLogo (),"width 35!,height 35!, align left");
-
         add (allComponents.getCantidad (),"align center");
         add (allComponents.getAmountTextField ());
         add (new JLabel(""),cellSize+",wrap");
@@ -143,9 +142,7 @@ public class AddInventoryPanel extends JPanel {
         add (allComponents.getPrecProveLabel ());
         add (allComponents.getPriceProveedorTextField (),"wrap");
         add(allComponents.getGoHomeButtonInventory(),"width 58!,height 58!, align left,growx");
-        //add(new JLabel(""),cellSize);
         add (allComponents.getSubmmitButton (),"width 280!,height 80!,span 2,align center");
         add (new JLabel(""),cellSize);
-
     }
 }
