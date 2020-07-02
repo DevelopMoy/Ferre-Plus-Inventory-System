@@ -13,7 +13,7 @@ public class VentaMainFrame extends JFrame {
         allData=allD;
         // this.addWindowListener(new AddProductFrame.WindowEvents (this));
         super.setSize(new Dimension(800,600));
-        super.setMinimumSize(new Dimension(800,600));
+        super.setMinimumSize(new Dimension(800,700));
         super.setTitle("Venta - Mode ");
         super.setLocationRelativeTo(null);
         super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
