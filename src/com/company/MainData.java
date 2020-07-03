@@ -16,6 +16,26 @@ public class MainData {
         initConnectionToDB();
     }
 
+    public static String getIDProducto (String nombreProducto, Statement allData) throws SQLException {
+        ResultSet res=allData.executeQuery("SELECT IDProducto FROM productos WHERE NombreProducto='"+nombreProducto+"'");
+        res.next();
+        return res.getString(1);
+    }
+
+    public static String getIDProveedor (String nombreProducto, Statement allData) throws SQLException {
+        ResultSet res=allData.executeQuery("SELECT IDProveedor FROM productos WHERE NombreProducto='"+nombreProducto+"'");
+        res.next();
+        return res.getString(1);
+    }
+
+    public static boolean existeEnInventario (String idProducto,String idProveedor, Statement allData) throws SQLException {
+        ResultSet res = allData.executeQuery("SELECT CANTIDAD FROM inventario WHERE IDProducto='"+idProducto+"' AND IDProveedor='"+idProveedor+"'");
+        while(res.next()){
+            return true;
+        }
+        return false;
+    }
+
     public void initConnectionToDB (){
         try {
             Connection conectionDataB= DriverManager.getConnection("jdbc:mysql://localhost:3306/upndowndatabase","root","");

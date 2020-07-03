@@ -82,14 +82,13 @@ public class AddProductoPanel extends JPanel {
          }
          return 0;
     }
-    private void validateNumbers (String dobleX,String dobleY)throws Exception {
+    public static void validateNumbers (String dobleX,String dobleY)throws Exception {
         try {
             Double y1=Double.parseDouble(dobleX);
             y1=Double.parseDouble(dobleY);
         }catch (Exception exc){
-            throw new Exception("Ingrese solamente numeros en los campos de precio.");
+            throw new Exception("Ingrese solamente numeros en los campos\no verifique que todos los campos esten llenos.");
         }
-
     }
     private void configEvents(){
         allComponents.getAceptarAddProductButton().addActionListener(new ActionListener() {

@@ -5,14 +5,18 @@ import com.company.JFrames.SearchCompraFrame;
 import com.company.MainData;
 import com.company.JFrames.MainWindow;
 import com.company.SwingComponents;
+import jdk.nashorn.internal.scripts.JO;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
+import javax.xml.transform.Result;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class AddInventoryPanel extends JPanel {
     private final String cellSize = "width 150!,height 140!";
@@ -35,6 +39,23 @@ public class AddInventoryPanel extends JPanel {
         configEvents ();
         actualizarComboBoxSeccion();
         actualizarComboBoxProveedor();
+        actualizarTextFieldPrecios();
+    }
+
+    private void actualizarTextFieldPrecios(){
+        String nombreProd=(String)allComponents.getProductosComboBox().getSelectedItem();
+        String precioProv="",precioVent="";
+        try {
+            ResultSet res = allData.getMainStatementDB().executeQuery("SELECT PrecioProveedor,PrecioVenta FROM productos WHERE NombreProducto='"+nombreProd+"'");
+            while(res.next()){
+                precioProv=res.getString(1);
+                precioVent=res.getString(2);
+            }
+            allComponents.getPriceProveedorTextField().setText(precioProv);
+            allComponents.getPriceUnitTextField().setText(precioVent);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(thisComp,"ERROR AL ACTUALIZAR PRECIOS: "+e.getMessage());
+        }
     }
 
     private void actualizarComboBoxSeccion(){
@@ -55,28 +76,44 @@ public class AddInventoryPanel extends JPanel {
             JOptionPane.showMessageDialog(thisComp,"ERROR AL ACTUALIZA COMBOBOX SECCION: "+throwables.getMessage());
         }
     }
-    private void actualizarComboBoxProveedor(){
-        String nombreProducto=(String)allComponents.getProductosComboBox().getSelectedItem();
-        String idProducto="",nombreProveedor="";
+
+    private void actualizarComboBoxProveedor (){
+        ArrayList<String> nombreProveedores=new ArrayList<>();
         try {
-            ResultSet result = allData.getMainStatementDB().executeQuery("SELECT IDProducto FROM productos WHERE NombreProducto='"+nombreProducto+"'");
-            while (result.next()){
-                idProducto=result.getString(1);
+            ResultSet resultado=allData.getMainStatementDB().executeQuery("SELECT EMPRESA FROM proveedor");
+            while(resultado.next()){
+                nombreProveedores.add(resultado.getString(1));
             }
-            // TENEMOS IDPRODUCTO
-            result=allData.getMainStatementDB().executeQuery("SELECT EMPRESA FROM proveedor INNER JOIN productos ON proveedor.IDProveedor=productos.IDProveedor WHERE productos.IDProducto='"+idProducto+"'");
-            while (result.next()){
-                nombreProveedor=result.getString(1);
-            }
-            String [] auxiliar ={nombreProveedor};
-            allComponents.getProvidersComboBox().setModel(new DefaultComboBoxModel(auxiliar));
-        } catch (Exception throwables) {
-            JOptionPane.showMessageDialog(thisComp,"ERROR AL ACTUALIZA COMBOBOX PROVEEDOR: "+throwables.getMessage());
+            allComponents.getProvidersComboBox().setModel(new DefaultComboBoxModel(nombreProveedores.toArray()));
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(thisComp,"ERROR AL ACTUALIZAR PROVEEDORES: "+e.getMessage());
         }
     }
 
-    private void subirInventarioABaseDatos(){
+    private String getIdProveedorPorEmpresa (String NombreEmpresa) throws SQLException {
+        ResultSet res= allData.getMainStatementDB().executeQuery("SELECT IDProveedor FROM proveedor WHERE EMPRESA='"+NombreEmpresa+"'");
+        res.next();
+        return res.getString(1);
+    }
 
+    private void subirInventarioABaseDatos(){
+        String nombreProducto,precioVent,precioProv;
+        nombreProducto=(String)allComponents.getProductosComboBox().getSelectedItem();
+        precioProv=(String)allComponents.getPriceProveedorTextField().getText();
+        precioVent=(String)allComponents.getPriceUnitTextField().getText();
+        try {
+            AddProductoPanel.validateNumbers("5.6",allComponents.getAmountTextField().getText());
+            //SI EXISTE EN EL INVENTARIO, INCREMENTAR LA CANTIDAD
+            String ammount=allComponents.getAmountTextField().getText();
+            if(MainData.existeEnInventario(MainData.getIDProducto(nombreProducto,allData.getMainStatementDB()),getIdProveedorPorEmpresa((String)allComponents.getProvidersComboBox().getSelectedItem()),allData.getMainStatementDB())){
+                allData.getMainStatementDB().executeUpdate("UPDATE inventario SET Cantidad=Cantidad+"+ammount+" WHERE IDProducto='"+MainData.getIDProducto(nombreProducto,allData.getMainStatementDB())+"' AND IDProveedor='"+getIdProveedorPorEmpresa((String)allComponents.getProvidersComboBox().getSelectedItem())+"'");
+            }else {// SI NO, SE CREA UN NUEVO REGISTRO EN INVENTARIO
+                allData.getMainStatementDB().executeUpdate("INSERT INTO inventario VALUES("+MainData.getIDProducto(nombreProducto,allData.getMainStatementDB())+","+ammount+","+getIdProveedorPorEmpresa((String)allComponents.getProvidersComboBox().getSelectedItem())+")");
+            }
+            allComponents.getAmountTextField().setText("");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(thisComp,"ERROR AL SUBIR INVENTARIO: "+e.getMessage());
+        }
     }
 
     private void configEvents() {
@@ -103,7 +140,7 @@ public class AddInventoryPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 actualizarComboBoxSeccion();
-                actualizarComboBoxProveedor();
+                actualizarTextFieldPrecios();
             }
         });
         allComponents.getSubmmitButton().addActionListener(new ActionListener() {
@@ -116,6 +153,9 @@ public class AddInventoryPanel extends JPanel {
 
     public void layoutConfig (){
         AutoCompleteDecorator.decorate( allComponents.getProductosComboBox());
+        AutoCompleteDecorator.decorate(allComponents.getProvidersComboBox());
+        allComponents.getPriceUnitTextField().setEnabled(false);
+        allComponents.getPriceProveedorTextField().setEnabled(false);
         add(new JLabel(""),cellSize);
         add(allComponents.getAddLogo (),"span 2");
         add (new JLabel(""),cellSize+",wrap");
