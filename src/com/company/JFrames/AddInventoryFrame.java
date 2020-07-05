@@ -14,7 +14,7 @@ public class AddInventoryFrame extends JFrame {
     public AddInventoryFrame(SwingComponents allC, MainData allD){
         allData=allD;
         mainPanel=new AddInventoryPanel(allC,allD,this);
-        super.setSize(new Dimension(850,600));
+        super.setSize(new Dimension(900,600));
         super.setMinimumSize(new Dimension(850,600));
         super.setTitle("Ferre-plus: Add-Mode");
         super.setLocationRelativeTo(null);
