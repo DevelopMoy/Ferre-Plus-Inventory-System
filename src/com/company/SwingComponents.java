@@ -61,6 +61,7 @@ public class SwingComponents {
     private JButton goHomeButtonVenta = new JButton(new ImageIcon ("images/homeBoton.png"));
     private JTextField cantVentaTextField = new JTextField ();
     private JTable ventTable = new JTable ();
+    private JScrollPane contenedorTabla=new JScrollPane(ventTable);
     private JButton limpiarVentaBoton = new JButton ("Limpiar");
     private JButton quitarVentanaBoton = new JButton ("Quitar");
     private JButton ventaFinalBoton = new JButton ("Venta");
@@ -70,6 +71,9 @@ public class SwingComponents {
     private JTextField totalVentaTextField = new JTextField ();
     private JButton terminarVentaBoton = new JButton (new ImageIcon ("images/terminarVentaBoton.png"));
 
+    public JScrollPane getContenedorTabla() {
+        return contenedorTabla;
+    }
     public JButton getTerminarVentaBoton() {
         return terminarVentaBoton;
     }

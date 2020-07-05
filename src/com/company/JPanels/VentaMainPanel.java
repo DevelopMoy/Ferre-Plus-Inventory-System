@@ -34,6 +34,10 @@ public class VentaMainPanel extends JPanel {
 
     }
 
+    private void verificarExistencia (String idProd)throws Exception{
+
+    }
+
     private void actualizarProductosCB (){
         ArrayList <String> productosExistentes =new ArrayList<>();
         try {
@@ -45,7 +49,6 @@ public class VentaMainPanel extends JPanel {
         }catch (Exception er){
             JOptionPane.showMessageDialog(thisComp,"ERROR AL ACTUALIZAR COMBO BOX: "+er.getMessage());
         }
-
     }
 
     public void configEvents (){
@@ -67,15 +70,17 @@ public class VentaMainPanel extends JPanel {
        add (allComponents.getCantidad ());
        add (allComponents.getCantVentaTextField (),"width 80!,height 30!,wrap");
       //  add (new JLabel (""),"wrap");
-       add (allComponents.getVentTable (), "span 2 3");
+       add (allComponents.getContenedorTabla(), "span 2 3");
        add (allComponents.getLimpiarVentaBoton (),"align center,span 2 2 ,wrap");
         add (new JLabel (""),"wrap");
        add (allComponents.getQuitarVentanaBoton (),"align center, span 2 ,wrap");
        //add (new JLabel (""),"wrap");
        add (new JLabel (""),"width 80!,height 30!, split 2");
        add (allComponents.getContVentaLabel (),"width 80!,height 30!");
+       allComponents.getContVentaTextField().setEnabled(false);
        add (allComponents.getContVentaTextField (),"split 3");
        add (allComponents.getTotalVentaLabel (),"width 50!,height 30!,");
+       allComponents.getTotalVentaTextField().setEnabled(false);
        add (allComponents.getTotalVentaTextField ());
        add(allComponents.getGoHomeButtonVenta (),"span 2, align center,wrap");
        add (allComponents.getTerminarVentaBoton (),"width 300!,height 80!,span ,align center");
