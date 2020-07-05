@@ -2,7 +2,10 @@ package com.company.JPanels;
 
 import com.company.MainData;
 import com.company.JFrames.MainWindow;
+import com.company.ProductTableModel;
 import com.company.SwingComponents;
+import com.company.TableRegister;
+import com.mysql.cj.xdevapi.Table;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -21,6 +24,7 @@ public class VentaMainPanel extends JPanel {
             "fillx,filly","[][shrink,grow,fill][][]","-35[top,fill]-40[][][][][]-50[fill]-15"
     );
     private JFrame parentFrame;
+    private ArrayList <TableRegister> datosTabla= new ArrayList<>();
 
     public  VentaMainPanel(SwingComponents allC, MainData allD,JFrame parentFrame){
         thisComp=this;
@@ -70,7 +74,8 @@ public class VentaMainPanel extends JPanel {
        add (allComponents.getCantidad ());
        add (allComponents.getCantVentaTextField (),"width 80!,height 30!,wrap");
       //  add (new JLabel (""),"wrap");
-       add (allComponents.getContenedorTabla(), "span 2 3");
+        allComponents.getVentTable().setModel(new ProductTableModel(datosTabla));
+       add (allComponents.getContenedorTabla(), "grow,span 2 3");
        add (allComponents.getLimpiarVentaBoton (),"align center,span 2 2 ,wrap");
         add (new JLabel (""),"wrap");
        add (allComponents.getQuitarVentanaBoton (),"align center, span 2 ,wrap");

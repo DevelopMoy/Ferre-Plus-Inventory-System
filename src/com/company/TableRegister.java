@@ -3,15 +3,13 @@ package com.company;
 public class TableRegister {
     private String idProd;
     private String nombre;
-    private String descripc;
     private int cantidad;
     private double precioUnit;
     private double precioTotal;
 
-    public TableRegister(String idProd, String nombre, String descripc, int cantidad, double precioUnit, double precioTotal) {
+    public TableRegister(String idProd, String nombre, int cantidad, double precioUnit, double precioTotal) {
         this.idProd = idProd;
         this.nombre = nombre;
-        this.descripc = descripc;
         this.cantidad = cantidad;
         this.precioUnit = precioUnit;
         this.precioTotal = precioTotal;
@@ -31,14 +29,6 @@ public class TableRegister {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getDescripc() {
-        return descripc;
-    }
-
-    public void setDescripc(String descripc) {
-        this.descripc = descripc;
     }
 
     public int getCantidad() {
