@@ -13,6 +13,7 @@ public class SwingComponents {
     private JButton initSettingsButton = new JButton(new ImageIcon("images/settBot.png"));
     private JLabel addLabel = new JLabel("Add Mode");
     private JLabel sellLabel = new JLabel("Sell Mode");
+    private JButton agregarProductoCatalogo = new JButton("AGREGAR PRODUCTO");
     // ------------------------------------------------------------------
     //AddInventoryPanel Components
     private JButton submmitButton = new JButton (new ImageIcon ("images/submitButton.png"));
@@ -46,6 +47,7 @@ public class SwingComponents {
     private JTextField descripcionTextField = new JTextField ();
     private JButton aceptarAddProductButton = new JButton (new ImageIcon ("images/aceptarAdd.png"));
     private JButton cancelarAddProductButton = new JButton ("Cancelar");
+    private JButton homeButtonAddProduct = new JButton("GO HOME");
 
     //SerachCompraPanel
     private JTextField nombreSearchCompraTextField = new JTextField ();
@@ -70,6 +72,14 @@ public class SwingComponents {
     private JLabel totalVentaLabel = new JLabel ("Total: ");
     private JTextField totalVentaTextField = new JTextField ();
     private JButton terminarVentaBoton = new JButton (new ImageIcon ("images/terminarVentaBoton.png"));
+
+    public JButton getAgregarProductoCatalogo() {
+        return agregarProductoCatalogo;
+    }
+
+    public JButton getHomeButtonAddProduct() {
+        return homeButtonAddProduct;
+    }
 
     public JScrollPane getContenedorTabla() {
         return contenedorTabla;

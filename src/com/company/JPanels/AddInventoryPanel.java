@@ -117,12 +117,6 @@ public class AddInventoryPanel extends JPanel {
     }
 
     private void configEvents() {
-        allComponents.getPlusLogo ().addActionListener (new ActionListener () {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddProductFrame(allComponents, allData);
-            }
-        });
         allComponents.getSearchLogo ().addActionListener (new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {

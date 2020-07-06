@@ -1,5 +1,6 @@
 package com.company.JPanels;
 
+import com.company.JFrames.MainWindow;
 import com.company.MainData;
 import com.company.SwingComponents;
 import jdk.nashorn.internal.scripts.JO;
@@ -21,7 +22,9 @@ public class AddProductoPanel extends JPanel {
             "fillx,filly","[][shrink,grow,fill]","[][][][][][]"
     );
     private JPanel thisComp;
-    public AddProductoPanel(SwingComponents allC, MainData allD){
+    private JFrame parentFrame;
+    public AddProductoPanel(SwingComponents allC, MainData allD, JFrame parentFrame){
+        this.parentFrame=parentFrame;
         thisComp=this;
         allComponents=allC;
         allData=allD;
@@ -59,6 +62,7 @@ public class AddProductoPanel extends JPanel {
         add (allComponents.getDescripcionLabel ());
         add (allComponents.getDescripcionTextField (),"wrap");
         add (allComponents.getAceptarAddProductButton (),"span 2, align center");
+        add(allComponents.getHomeButtonAddProduct());
     }
     private boolean isValidated (){
         if (allComponents.getNombreAddProductTextField().getText().compareTo("")!=0){
@@ -91,6 +95,13 @@ public class AddProductoPanel extends JPanel {
         }
     }
     private void configEvents(){
+        allComponents.getHomeButtonAddProduct().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                parentFrame.dispose();
+                new MainWindow();
+            }
+        });
         allComponents.getAceptarAddProductButton().addActionListener(new ActionListener() {
             @Override
 

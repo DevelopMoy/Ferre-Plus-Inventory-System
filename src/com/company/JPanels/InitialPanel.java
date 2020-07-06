@@ -1,6 +1,7 @@
 package com.company.JPanels;
 
 import com.company.JFrames.AddInventoryFrame;
+import com.company.JFrames.AddProductFrame;
 import com.company.JFrames.VentaMainFrame;
 import com.company.MainData;
 import com.company.SwingComponents;
@@ -44,9 +45,17 @@ public class InitialPanel extends JPanel {
         add (new JLabel(""),cellSize);
         add(new JLabel(""),cellSize);
         add (allComponents.getInitSettingsButton(),"width 100!,height 70!,aligny top,growx");
+        add (allComponents.getAgregarProductoCatalogo());
     }
 
     public void buttonsConfig (){
+        allComponents.getAgregarProductoCatalogo().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                parentFrame.dispose();
+                new AddProductFrame(allComponents,allData);
+            }
+        });
         allComponents.getAddModeButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

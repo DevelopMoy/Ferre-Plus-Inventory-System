@@ -21,7 +21,7 @@ public class AddProductFrame extends JFrame {
         super.setTitle("Ferre-plus: Add-Product");
         super.setLocationRelativeTo(null);
         super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        super.add(new AddProductoPanel(allC,allData));
+        super.add(new AddProductoPanel(allC,allData,this));
         super.setVisible(true);
     }
 
