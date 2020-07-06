@@ -6,6 +6,7 @@ public class TableRegister {
     private int cantidad;
     private double precioUnit;
     private double precioTotal;
+    private String idProveedor;
 
     public TableRegister(String idProd, String nombre, int cantidad, double precioUnit, double precioTotal) {
         this.idProd = idProd;
@@ -13,6 +14,10 @@ public class TableRegister {
         this.cantidad = cantidad;
         this.precioUnit = precioUnit;
         this.precioTotal = precioTotal;
+    }
+
+    public String getIdProveedor() {
+        return idProveedor;
     }
 
     public String getIdProd() {

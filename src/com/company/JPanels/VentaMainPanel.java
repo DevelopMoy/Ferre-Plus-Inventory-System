@@ -25,6 +25,7 @@ public class VentaMainPanel extends JPanel {
     );
     private JFrame parentFrame;
     private ArrayList <TableRegister> datosTabla= new ArrayList<>();
+    private ProductTableModel modeloTabla=new ProductTableModel(datosTabla);
 
     public  VentaMainPanel(SwingComponents allC, MainData allD,JFrame parentFrame){
         thisComp=this;
@@ -38,8 +39,40 @@ public class VentaMainPanel extends JPanel {
 
     }
 
-    private void verificarExistencia (String idProd)throws Exception{
-
+    private void verificarExistencia (String idProd,String cantidad)throws Exception{
+        int acumuCant=0,cantAux=0;
+        boolean existOnTable=false;
+        ResultSet res = allData.getMainStatementDB().executeQuery("SELECT Cantidad FROM inventario WHERE IDProducto="+idProd);
+        //SUMAR TODOS LOS PRODUCTOS EXISTENTES
+        while (res.next()){
+            acumuCant=acumuCant+Integer.parseInt(res.getString(1));
+        }
+        for (TableRegister auxProd:datosTabla){
+            if (auxProd.getIdProd().compareTo(idProd)==0){
+                existOnTable=true;
+                cantAux=auxProd.getCantidad();
+            }
+        }
+        acumuCant=acumuCant-cantAux;//OBTENEMOS LOS PRODUCTOS TOTALES -> SE RESTA LOS PRODUCTOS YA AÑADIDOS A LA TABLA AL TOTAL DE PRODUCTOS EN EL INVENTARIO
+        if (acumuCant>=Integer.parseInt(cantidad)){//SI HAY EXISTENCIA
+            if (existOnTable){//SI EXISTE SOLO INCREMENTAMOS LA CANTIDAD EN datosTabla Y ACTUALIZAMOS COSTO TOTAL
+                for (TableRegister auxData:datosTabla){
+                    if (auxData.getIdProd().compareTo(idProd)==0){
+                        auxData.setCantidad(auxData.getCantidad()+Integer.parseInt(cantidad));
+                        auxData.setPrecioTotal(auxData.getCantidad()*auxData.getPrecioUnit());
+                    }
+                }
+            }else{// SI NO, CREAMOS UN NUEVO REGISTRO EN DATOS TABLA
+                String nombre=(String)allComponents.getProductoVentaCombobox().getSelectedItem();
+                ResultSet resPrecUnit = allData.getMainStatementDB().executeQuery("SELECT PrecioVenta FROM productos WHERE IDProducto="+idProd);
+                resPrecUnit.next();
+                String precioUnit=resPrecUnit.getString(1);
+                Double precioTotal=Double.parseDouble(precioUnit)*Double.parseDouble(cantidad);
+                datosTabla.add(new TableRegister(idProd,nombre,Integer.parseInt(cantidad),Double.parseDouble(precioUnit),precioTotal));
+            }
+        }else {
+            throw new Exception("No hay suficientes productos!, Cantidad en inventario: "+acumuCant);
+        }
     }
 
     private void actualizarProductosCB (){
@@ -63,6 +96,19 @@ public class VentaMainPanel extends JPanel {
                 new MainWindow();
             }
         });
+        allComponents.getAddVentaButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    AddProductoPanel.validateNumbers("5.0",allComponents.getCantVentaTextField().getText());
+                    verificarExistencia(MainData.getIDProducto((String)allComponents.getProductoVentaCombobox().getSelectedItem(),allData.getMainStatementDB()),allComponents.getCantVentaTextField().getText());
+                    modeloTabla.fireTableDataChanged();
+                }catch (Exception x){
+                    JOptionPane.showMessageDialog(thisComp,"ERROR AL AGREGAR PRODUCTO: "+x.getMessage());
+                }
+                allComponents.getCantVentaTextField().setText("");
+            }
+        });
     }
     public void layoutConfig(){
         add (allComponents.getSellModeLogo (), "align center,span 4, wrap");
@@ -74,7 +120,7 @@ public class VentaMainPanel extends JPanel {
        add (allComponents.getCantidad ());
        add (allComponents.getCantVentaTextField (),"width 80!,height 30!,wrap");
       //  add (new JLabel (""),"wrap");
-        allComponents.getVentTable().setModel(new ProductTableModel(datosTabla));
+        allComponents.getVentTable().setModel(modeloTabla);
        add (allComponents.getContenedorTabla(), "grow,span 2 3");
        add (allComponents.getLimpiarVentaBoton (),"align center,span 2 2 ,wrap");
         add (new JLabel (""),"wrap");
