@@ -17,7 +17,7 @@ public class InitialPanel extends JPanel {
     private MainData allData;
     private JFrame parentFrame;
     private MigLayout layout = new MigLayout(
-            "fillx,filly","[][shrink,grow,fill][shrink,grow,fill][]","[][][][]"
+            "debug,fillx,filly","[][shrink,grow,fill][shrink,grow,fill][]","[][][][]"
     );
 
     public InitialPanel (SwingComponents allC, MainData allD,JFrame parentFrame){
@@ -41,11 +41,13 @@ public class InitialPanel extends JPanel {
         add (allComponents.getSellLabel(),"aligny top");
         add (allComponents.getAddLabel(),"aligny top");
         add (new JLabel(""),cellSize+",wrap");
+        add (allComponents.getInitSettingsButton(),"width 100!,height 100!,aligny top,growx");
         add (new JLabel(""),cellSize);
-        add (new JLabel(""),cellSize);
+        //add (new JLabel(""),cellSize);
+
+
         add(new JLabel(""),cellSize);
-        add (allComponents.getInitSettingsButton(),"width 100!,height 70!,aligny top,growx");
-        add (allComponents.getAgregarProductoCatalogo());
+        add (allComponents.getAgregarProductoCatalogo(),"aligny top,growx");
     }
 
     public void buttonsConfig (){

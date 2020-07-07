@@ -21,7 +21,7 @@ public class VentaMainPanel extends JPanel {
     private MainData allData;
     private JPanel thisComp;
     private MigLayout layout = new MigLayout(
-            "fillx,filly","[][shrink,grow,fill][][]","-35[top,fill]-40[][][][][]-50[fill]-15"
+            "debug,fillx,filly","[][shrink,grow,fill][][]","-25[top,fill]-40[][][][]-25[]-35[fill]-15"
     );
     private JFrame parentFrame;
     private ArrayList <TableRegister> datosTabla= new ArrayList<>();
@@ -121,9 +121,9 @@ public class VentaMainPanel extends JPanel {
        add (allComponents.getCantVentaTextField (),"width 80!,height 30!,wrap");
       //  add (new JLabel (""),"wrap");
         allComponents.getVentTable().setModel(modeloTabla);
-       add (allComponents.getContenedorTabla(), "grow,span 2 3");
-       add (allComponents.getLimpiarVentaBoton (),"align center,span 2 2 ,wrap");
-        add (new JLabel (""),"wrap");
+       add (allComponents.getContenedorTabla(), ",align center, width 650!,height 420!,span 2 2");
+       add (allComponents.getLimpiarVentaBoton (),"align center,span 2 ,wrap");
+     //   add (new JLabel (""),"wrap");
        add (allComponents.getQuitarVentanaBoton (),"align center, span 2 ,wrap");
        //add (new JLabel (""),"wrap");
        add (new JLabel (""),"width 80!,height 30!, split 2");

@@ -16,7 +16,7 @@ public class AddProductFrame extends JFrame {
     public AddProductFrame(SwingComponents allC, MainData allD){
         allData=allD;
         superComp=this;
-        super.setSize(new Dimension (600,450));
+        super.setSize(new Dimension (600,480));
         super.setResizable (false);
         super.setTitle("Ferre-plus: Add-Product");
         super.setLocationRelativeTo(null);
