@@ -21,7 +21,7 @@ public class VentaMainPanel extends JPanel {
     private MainData allData;
     private JPanel thisComp;
     private MigLayout layout = new MigLayout(
-            "debug,fillx,filly","[][shrink,grow,fill][][]","-25[top,fill]-40[][][][]-25[]-35[fill]-15"
+            "fillx,filly","[][shrink,grow,fill][][]","-25[top,fill]-40[][][][]-25[]-35[fill]-15"
     );
     private JFrame parentFrame;
     private ArrayList <TableRegister> datosTabla= new ArrayList<>();

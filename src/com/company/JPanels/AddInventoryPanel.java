@@ -26,7 +26,7 @@ public class AddInventoryPanel extends JPanel {
     private JPanel thisComp;
 
     private MigLayout layout = new MigLayout(
-            "debug,fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-130[]-190[]-125[]-125[]-150[]-125[]-125[]"
+            "fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-130[]-190[]-125[]-125[]-150[]-125[]-125[]"
     );
 
     public AddInventoryPanel(SwingComponents allC, MainData allD, JFrame parentFrame){

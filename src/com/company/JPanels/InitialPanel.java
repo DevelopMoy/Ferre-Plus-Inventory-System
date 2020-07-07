@@ -17,7 +17,7 @@ public class InitialPanel extends JPanel {
     private MainData allData;
     private JFrame parentFrame;
     private MigLayout layout = new MigLayout(
-            "debug,fillx,filly","[][shrink,grow,fill][shrink,grow,fill][]","[][][][]"
+            "fillx,filly","[][shrink,grow,fill][shrink,grow,fill][]","[][][][]"
     );
 
     public InitialPanel (SwingComponents allC, MainData allD,JFrame parentFrame){

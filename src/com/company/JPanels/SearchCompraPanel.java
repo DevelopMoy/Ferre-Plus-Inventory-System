@@ -11,7 +11,7 @@ public class SearchCompraPanel extends JPanel {
     private SwingComponents allComponents;
     private MainData allData;
     private MigLayout layout = new MigLayout(
-            "debug,fillx,filly","[][shrink,grow,fill][]","[][][][][]"
+            "fillx,filly","[][shrink,grow,fill][]","[][][][][]"
     );
     private JFrame parentFrame;
 
