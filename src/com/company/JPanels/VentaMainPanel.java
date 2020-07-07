@@ -5,13 +5,13 @@ import com.company.JFrames.MainWindow;
 import com.company.ProductTableModel;
 import com.company.SwingComponents;
 import com.company.TableRegister;
-import com.mysql.cj.xdevapi.Table;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -37,6 +37,55 @@ public class VentaMainPanel extends JPanel {
         actualizarProductosCB();
         layoutConfig ();
         configEvents ();
+    }
+
+    private void terminarVenta(){
+        ArrayList <Integer> idProveedores = new ArrayList<>();
+        int existencia, cantidadTotal;
+        boolean compraRealizada =false;
+        for (TableRegister filaTabla : datosTabla){
+            compraRealizada =true;
+            cantidadTotal=filaTabla.getCantidad();
+            try {
+                ResultSet proveedores= allData.getMainStatementDB().executeQuery("SELECT IDProveedor FROM inventario WHERE IDProducto="+filaTabla.getIdProd()+" ORDER BY Cantidad DESC");
+                while (proveedores.next()){
+                    idProveedores.add(Integer.parseInt(proveedores.getString(1)));
+                }
+                for (Integer idProveedorActual:idProveedores){//RECORRER TODOS LOS PROVEEDORES POR MEDIO DE SU ID
+                    ResultSet resExist=allData.getMainStatementDB().executeQuery("SELECT Cantidad FROM inventario WHERE IDProveedor="+idProveedorActual+" AND IDProducto="+filaTabla.getIdProd());
+                    resExist.next();
+                    existencia=Integer.parseInt(resExist.getString(1));
+                    if (existencia>=cantidadTotal){
+                        existencia=existencia-cantidadTotal;
+                        cantidadTotal=0;
+                    }else {
+                        cantidadTotal=cantidadTotal-existencia;
+                        existencia=0;
+                    }
+                    allData.getMainStatementDB().executeUpdate("UPDATE inventario SET Cantidad="+existencia+" WHERE IDProveedor="+idProveedorActual+" AND IDProducto="+filaTabla.getIdProd());
+                    if (cantidadTotal==0){
+                        break;
+                    }
+                }
+                idProveedores.clear();
+            } catch (Exception throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        if (compraRealizada){
+            int op=JOptionPane.showConfirmDialog(thisComp,"Venta exitosa. ¿Desea imprimir su comprobante?");
+            if (op==JOptionPane.OK_OPTION){
+                try {
+                    allComponents.getVentTable().print();
+                } catch (PrinterException e) {
+                    JOptionPane.showMessageDialog(thisComp,"Error al imprimir");
+                    e.printStackTrace();
+                }
+            }
+            datosTabla.clear();
+            modeloTabla.fireTableDataChanged();
+        }
+
     }
 
     private void actualizarTextFields (){
@@ -99,7 +148,13 @@ public class VentaMainPanel extends JPanel {
         }
     }
 
-    public void configEvents (){
+    private void configEvents (){
+        allComponents.getTerminarVentaBoton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                terminarVenta();
+            }
+        });
         allComponents.getLimpiarVentaBoton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -149,7 +204,7 @@ public class VentaMainPanel extends JPanel {
             }
         });
     }
-    public void layoutConfig(){
+    private void layoutConfig(){
         add (allComponents.getSellModeLogo (), "align center,span 4, wrap");
        add(allComponents.getProduct ());
         AutoCompleteDecorator.decorate(allComponents.getProductoVentaCombobox());
