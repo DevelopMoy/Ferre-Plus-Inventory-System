@@ -33,10 +33,21 @@ public class VentaMainPanel extends JPanel {
         setLayout (layout);
         allComponents=allC;
         allData=allD;
+        actualizarTextFields();
         actualizarProductosCB();
         layoutConfig ();
         configEvents ();
+    }
 
+    private void actualizarTextFields (){
+        int acum=0;
+        double precioAcum=0;
+        for (TableRegister x : datosTabla){
+            acum+=x.getCantidad();
+            precioAcum+=x.getPrecioTotal();
+        }
+        allComponents.getContVentaTextField().setText(String.valueOf(acum));
+        allComponents.getTotalVentaTextField().setText(String.valueOf(precioAcum));
     }
 
     private void verificarExistencia (String idProd,String cantidad)throws Exception{
@@ -89,6 +100,33 @@ public class VentaMainPanel extends JPanel {
     }
 
     public void configEvents (){
+        allComponents.getLimpiarVentaBoton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                datosTabla.clear();
+                modeloTabla.fireTableDataChanged();
+                actualizarTextFields();
+            }
+        });
+        allComponents.getQuitarVentanaBoton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int fila;
+                String id;
+                if ((fila=allComponents.getVentTable().getSelectedRow())!=-1){
+                    id=(String)allComponents.getVentTable().getValueAt(fila,0);
+                    for (TableRegister x: datosTabla){
+                        if (x.getIdProd().compareTo(id)==0){
+                            datosTabla.remove(x);
+                            modeloTabla.fireTableDataChanged();
+                            actualizarTextFields();
+                            break;
+                        }
+                    }
+
+                }
+            }
+        });
         allComponents.getGoHomeButtonVenta().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,6 +141,7 @@ public class VentaMainPanel extends JPanel {
                     AddProductoPanel.validateNumbers("5.0",allComponents.getCantVentaTextField().getText());
                     verificarExistencia(MainData.getIDProducto((String)allComponents.getProductoVentaCombobox().getSelectedItem(),allData.getMainStatementDB()),allComponents.getCantVentaTextField().getText());
                     modeloTabla.fireTableDataChanged();
+                    actualizarTextFields();
                 }catch (Exception x){
                     JOptionPane.showMessageDialog(thisComp,"ERROR AL AGREGAR PRODUCTO: "+x.getMessage());
                 }
