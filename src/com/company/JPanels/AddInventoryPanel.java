@@ -26,7 +26,7 @@ public class AddInventoryPanel extends JPanel {
     private JPanel thisComp;
 
     private MigLayout layout = new MigLayout(
-            "fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-130[]-190[]-125[]-125[]-150[]-125[]-125[]"
+            "debug,fillx,filly","27[][shrink,grow,fill]15[left][fill]","[]-130[]-190[]-125[]-125[]-150[]-125[]-125[]"
     );
 
     public AddInventoryPanel(SwingComponents allC, MainData allD, JFrame parentFrame){
@@ -161,9 +161,10 @@ public class AddInventoryPanel extends JPanel {
         }
         allComponents.getProductosComboBox().setModel(new DefaultComboBoxModel(allData.getNombreProductosParaCBox().toArray()));
         add(allComponents.getProductosComboBox (),"align left");
-            add(allComponents.getPlusLogo (),"width 35!,height 35!,split 3");
-        add (allComponents.getSearchLogo (),"width 35!,height 35!, align left");
-        add (allComponents.getCantidad (),"align center");
+       //     add(allComponents.getPlusLogo (),"width 35!,height 35!,split 3");
+        add (allComponents.getSearchLogo (),"width 35!,height 35!, align left, split 3");
+       add (new JLabel (""),"width 35!,height 35!, split 2");
+        add (allComponents.getCantidad (),"alignx right");
         add (allComponents.getAmountTextField ());
         add (new JLabel(""),cellSize+",wrap");
         add (allComponents.getCategory ());
@@ -175,7 +176,7 @@ public class AddInventoryPanel extends JPanel {
         add (allComponents.getProvidersComboBox());
         add (allComponents.getPrecProveLabel ());
         add (allComponents.getPriceProveedorTextField (),"wrap");
-        add(allComponents.getGoHomeButtonInventory(),"width 58!,height 58!, align left,growx");
+        add(allComponents.getGoHomeButtonInventory(),"width 58!,height 58!,growx");
         add (allComponents.getSubmmitButton (),"width 280!,height 80!,span 2,align center");
         add (new JLabel(""),cellSize);
     }

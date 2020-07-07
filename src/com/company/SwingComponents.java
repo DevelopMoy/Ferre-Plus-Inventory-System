@@ -3,6 +3,7 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Vector;
 
 //This class will contain all the components used by the GUI
 public class SwingComponents {
@@ -13,7 +14,7 @@ public class SwingComponents {
     private JButton initSettingsButton = new JButton(new ImageIcon("images/settBot.png"));
     private JLabel addLabel = new JLabel("Add Mode");
     private JLabel sellLabel = new JLabel("Sell Mode");
-    private JButton agregarProductoCatalogo = new JButton("AGREGAR PRODUCTO");
+    private JButton agregarProductoCatalogo = new JButton(new ImageIcon ("images/add-catalog.png"));
     // ------------------------------------------------------------------
     //AddInventoryPanel Components
     private JButton submmitButton = new JButton (new ImageIcon ("images/submitButton.png"));
@@ -47,14 +48,17 @@ public class SwingComponents {
     private JTextField descripcionTextField = new JTextField ();
     private JButton aceptarAddProductButton = new JButton (new ImageIcon ("images/aceptarAdd.png"));
     private JButton cancelarAddProductButton = new JButton ("Cancelar");
-    private JButton homeButtonAddProduct = new JButton("GO HOME");
+    private JButton homeButtonAddProduct = new JButton(new ImageIcon ("images/homeBoton.png"));
 
     //SerachCompraPanel
+    private JLabel searchTitle = new JLabel (new ImageIcon ("images/searchTitle.png"));
+   private String[] aux = {"Nombre","Codigo","Categoria"};
+    private JComboBox titulosSearch = new JComboBox (new DefaultComboBoxModel<String> (aux));
     private JTextField nombreSearchCompraTextField = new JTextField ();
     private JButton searchButtonSearchCompraPanel = new JButton (new ImageIcon ("images/searchLogo.png"));
     private JTable searchCompraJTable = new JTable ();
     private JButton aceptarButtonSearchCompraPanel = new JButton (new ImageIcon ("images/aceptarAdd.png"));
-
+    private JButton goHomeSearchPanel = new JButton (new ImageIcon ("images/homeBoton.png"));
     //VentaPanelComponents
     private JLabel sellModeLogo = new JLabel (new ImageIcon ("images/sellLogo.png"));
     private JComboBox productoVentaCombobox = new JComboBox ();
@@ -73,6 +77,14 @@ public class SwingComponents {
     private JTextField totalVentaTextField = new JTextField ();
     private JButton terminarVentaBoton = new JButton (new ImageIcon ("images/terminarVentaBoton.png"));
 
+    public JLabel getSearchTitle() {
+        return searchTitle;
+    }
+
+    public JComboBox getTitulosSearch() {
+        return titulosSearch;
+    }
+
     public JButton getAgregarProductoCatalogo() {
         return agregarProductoCatalogo;
     }
@@ -86,6 +98,10 @@ public class SwingComponents {
     }
     public JButton getTerminarVentaBoton() {
         return terminarVentaBoton;
+    }
+
+    public JButton getGoHomeSearchPanel() {
+        return goHomeSearchPanel;
     }
 
     public JLabel getSellModeLogo() {

@@ -11,7 +11,7 @@ public class SearchCompraPanel extends JPanel {
     private SwingComponents allComponents;
     private MainData allData;
     private MigLayout layout = new MigLayout(
-            "debug,fillx,filly","[][shrink,grow,fill][]","[][][][]"
+            "debug,fillx,filly","[][shrink,grow,fill][]","[][][][][]"
     );
     private JFrame parentFrame;
 
@@ -24,12 +24,14 @@ public class SearchCompraPanel extends JPanel {
         configEvents ();
     }
     public void layoutConfig(){
-        add (allComponents.getNombreAddProductLabel ());
+        add (allComponents.getSearchTitle (),"span 2,align center, wrap");
+        add (allComponents.getTitulosSearch ());
         add (allComponents.getNombreSearchCompraTextField (),"split 2");
         add (allComponents.getSearchButtonSearchCompraPanel (),"width 35!,height 35!,wrap");
         add (allComponents.getSearchCompraJTable (),"span  2 2 ,wrap");
         add (new JLabel (""),"wrap,wrap");
-        add (allComponents.getAceptarButtonSearchCompraPanel (),"span 2, align center");
+        add (allComponents.getGoHomeSearchPanel ());
+        add (allComponents.getAceptarButtonSearchCompraPanel ()," align center");
 
     }
     public void configEvents(){

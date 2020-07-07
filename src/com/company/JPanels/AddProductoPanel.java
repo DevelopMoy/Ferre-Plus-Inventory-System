@@ -61,8 +61,9 @@ public class AddProductoPanel extends JPanel {
         add (allComponents.getPrecioVentaAddProductTextField (),"wrap");
         add (allComponents.getDescripcionLabel ());
         add (allComponents.getDescripcionTextField (),"wrap");
-        add (allComponents.getAceptarAddProductButton (),"span 2, align center");
-        add(allComponents.getHomeButtonAddProduct());
+        add(allComponents.getHomeButtonAddProduct(),"align center");
+        add (allComponents.getAceptarAddProductButton (),"align center");
+
     }
     private boolean isValidated (){
         if (allComponents.getNombreAddProductTextField().getText().compareTo("")!=0){
