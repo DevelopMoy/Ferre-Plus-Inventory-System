@@ -34,16 +34,25 @@ public class SearchCompraPanel extends JPanel {
         layoutConfig ();
         configEvents ();
     }
-    private void busquedaPorNombre (String criterio){
+    private void busqueda (String criterio,int op){//op 1= nombre 2=codigo
         ArrayList<String> nombresEnBD = new ArrayList<>();
+        ResultSet nombresRS,resultAux;
         try {
-            ResultSet nombresRS = allData.getMainStatementDB().executeQuery("SELECT NombreProducto FROM productos");
+            if (op==1){
+                nombresRS = allData.getMainStatementDB().executeQuery("SELECT NombreProducto FROM productos");
+            }else {
+                nombresRS = allData.getMainStatementDB().executeQuery("SELECT CodigoInterno FROM productos");
+            }
             while (nombresRS.next()){
                 nombresEnBD.add(nombresRS.getString(1));
             }
             for (String auxBusq:nombresEnBD){
                 if(auxBusq.toUpperCase().contains(criterio.toUpperCase())){//llenar tabla con todas las coincidencias
-                    ResultSet resultAux = allData.getMainStatementDB().executeQuery("SELECT productos.IDProducto,productos.NombreProducto,productos.CodigoInterno,seccion.NombreSeccion,productos.Descripcion FROM productos INNER JOIN seccion ON productos.IDSeccion=seccion.IDSeccion WHERE productos.NombreProducto='"+auxBusq+"'");
+                    if (op==1){
+                        resultAux = allData.getMainStatementDB().executeQuery("SELECT productos.IDProducto,productos.NombreProducto,productos.CodigoInterno,seccion.NombreSeccion,productos.Descripcion FROM productos INNER JOIN seccion ON productos.IDSeccion=seccion.IDSeccion WHERE productos.NombreProducto='"+auxBusq+"'");
+                    }else {
+                        resultAux = allData.getMainStatementDB().executeQuery("SELECT productos.IDProducto,productos.NombreProducto,productos.CodigoInterno,seccion.NombreSeccion,productos.Descripcion FROM productos INNER JOIN seccion ON productos.IDSeccion=seccion.IDSeccion WHERE productos.CodigoInterno='"+auxBusq+"'");
+                    }
                     while(resultAux.next()){
                         tableData.add(new SearchTableRegister(Integer.parseInt(resultAux.getString(1)),resultAux.getString(2),resultAux.getString(3),resultAux.getString(4),resultAux.getString(5)));
                     }
@@ -52,10 +61,6 @@ public class SearchCompraPanel extends JPanel {
         } catch (SQLException throwables) {
             JOptionPane.showMessageDialog(thisComp,"Error al buscar: "+throwables.getMessage());
         }
-    }
-
-    private void busquedaPorCodigo (String criterio){
-
     }
 
     private void layoutConfig(){
@@ -81,10 +86,10 @@ public class SearchCompraPanel extends JPanel {
                         throw new Exception("Campo de busqueda vacio");
                     }
                     if (filtroBusqueda.compareTo("Nombre")==0){
-                        busquedaPorNombre(datoBusqueda);
+                        busqueda(datoBusqueda,1);
                     }else {
                         if (filtroBusqueda.compareTo("Codigo")==0){
-                            busquedaPorCodigo(datoBusqueda);
+                            busqueda(datoBusqueda,2);
                         }
                     }
                     modeloTabla.fireTableDataChanged();
