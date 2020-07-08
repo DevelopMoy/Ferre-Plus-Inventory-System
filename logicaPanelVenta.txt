@@ -1,4 +1,0 @@
-*Al presionar add
--Verificar si hay existencia de dicha cantidad, si no hay mostrar msj con la existencia actual
--Agregarlo a arreglo temporal
-ID |Cantidad | NombreProd | PrecioUnit | PrecioTot

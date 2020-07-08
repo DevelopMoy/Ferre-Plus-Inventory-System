@@ -1,0 +1,2 @@
+*Los registros de venta se hacen en base al proveedor
+*Las ventas se toman del proveedor con mas existencia de producto

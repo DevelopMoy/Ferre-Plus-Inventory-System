@@ -41,7 +41,7 @@ public class VentaMainPanel extends JPanel {
 
     private void terminarVenta(){
         ArrayList <Integer> idProveedores = new ArrayList<>();
-        int existencia, cantidadTotal;
+        int existencia, cantidadTotal,totalAuxiliar,existenciaAux;
         boolean compraRealizada =false;
         for (TableRegister filaTabla : datosTabla){
             compraRealizada =true;
@@ -56,13 +56,17 @@ public class VentaMainPanel extends JPanel {
                     resExist.next();
                     existencia=Integer.parseInt(resExist.getString(1));
                     if (existencia>=cantidadTotal){
+                        totalAuxiliar=cantidadTotal;
                         existencia=existencia-cantidadTotal;
                         cantidadTotal=0;
                     }else {
+                        totalAuxiliar=existencia;
                         cantidadTotal=cantidadTotal-existencia;
                         existencia=0;
                     }
                     allData.getMainStatementDB().executeUpdate("UPDATE inventario SET Cantidad="+existencia+" WHERE IDProveedor="+idProveedorActual+" AND IDProducto="+filaTabla.getIdProd());
+                    //AGREGAR REGISTRO A BASE DE DATOS DE VENTAS
+                    allData.getMainStatementDB().executeUpdate("INSERT INTO registro_ventas VALUES(DEFAULT,"+filaTabla.getIdProd()+",NOW(),"+filaTabla.getPrecioUnit()*totalAuxiliar+","+totalAuxiliar+","+idProveedorActual+")");
                     if (cantidadTotal==0){
                         break;
                     }
