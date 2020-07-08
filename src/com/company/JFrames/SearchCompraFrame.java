@@ -14,7 +14,7 @@ public class SearchCompraFrame extends JFrame {
     public SearchCompraFrame(SwingComponents allC, MainData allD){
         allData=allD;
        // this.addWindowListener(new AddProductFrame.WindowEvents (this));
-        super.setSize(new Dimension (500,450));
+        super.setSize(new Dimension (700,650));
         super.setResizable (false);
         super.setTitle("Search");
         super.setLocationRelativeTo(null);

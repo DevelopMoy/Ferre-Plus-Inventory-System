@@ -52,13 +52,15 @@ public class SwingComponents {
 
     //SerachCompraPanel
     private JLabel searchTitle = new JLabel (new ImageIcon ("images/searchTitle.png"));
-   private String[] aux = {"Nombre","Codigo","Categoria"};
+   private String[] aux = {"Nombre","Codigo"};
     private JComboBox titulosSearch = new JComboBox (new DefaultComboBoxModel<String> (aux));
     private JTextField nombreSearchCompraTextField = new JTextField ();
     private JButton searchButtonSearchCompraPanel = new JButton (new ImageIcon ("images/searchLogo.png"));
     private JTable searchCompraJTable = new JTable ();
     private JButton aceptarButtonSearchCompraPanel = new JButton (new ImageIcon ("images/aceptarAdd.png"));
     private JButton goHomeSearchPanel = new JButton (new ImageIcon ("images/homeBoton.png"));
+    private JTable tablaNuevaSearch=new JTable();
+    private JScrollPane contenedorNuevoSearch = new JScrollPane(tablaNuevaSearch);
     //VentaPanelComponents
     private JLabel sellModeLogo = new JLabel (new ImageIcon ("images/sellLogo.png"));
     private JComboBox productoVentaCombobox = new JComboBox ();
@@ -79,6 +81,14 @@ public class SwingComponents {
 
     public JLabel getSearchTitle() {
         return searchTitle;
+    }
+
+    public JTable getTablaNuevaSearch() {
+        return tablaNuevaSearch;
+    }
+
+    public JScrollPane getContenedorNuevoSearch() {
+        return contenedorNuevoSearch;
     }
 
     public JComboBox getTitulosSearch() {
