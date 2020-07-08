@@ -19,7 +19,7 @@ public class ReportPanel extends JPanel {
     private MainData allData;
     private JPanel thisComp;
     private MigLayout layout = new MigLayout(
-            "fillx,filly","[][][]","[][][][]"
+            "fillx,filly","10[][][]","[][fill,grow][][]"
     );
     private JFrame parentFrame;
     private ArrayList <ReportTableRegister> datosTabla=new ArrayList<>();
@@ -37,13 +37,14 @@ public class ReportPanel extends JPanel {
     }
 
     private void configLayout(){
-        add(allComponents.getReportTitleLabel (),"span 2, align left");
-        add (new JLabel (""),"wrap");
+        add(allComponents.getReportTitleLabel (),"span , align center, wrap");
+      //  add (new JLabel (""),"wrap");
         allComponents.getReportTable().setModel(modeloTabla);
-        add(allComponents.getContenedorReportTable (),"span 2 2,width 550!,height 420!");
-        add(allComponents.getGenerarReporteBoton (),"width 180!,height 50! , wrap," );
-        add(allComponents.getImprimirReporteBoton (),"wrap");
-        add (allComponents.getGoHomeReportPanel (),"span 2, align center");
+        add(allComponents.getContenedorReportTable (),"width 730!,height 500!,span 4, wrap");
+        add(allComponents.getGenerarReporteBoton (),"width 180!,height 50!, align center, split 2 " );
+        add (new JLabel (""),"width 180!,height 50!");
+        add(allComponents.getImprimirReporteBoton (),"align center, width 180!,height 50!,wrap");
+        add (allComponents.getGoHomeReportPanel (),"span 3, align center");
 
     }
 
