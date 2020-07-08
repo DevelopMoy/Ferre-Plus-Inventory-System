@@ -53,6 +53,7 @@ public class SwingComponents {
     //ReportPanel
     private JLabel reportTitleLabel = new JLabel (new ImageIcon ("images/reportTitle.png"));
     private JTable reportTable = new JTable ();
+    private JScrollPane contenedorReportTable=new JScrollPane(reportTable);
     private JButton generarReporteBoton = new JButton ("Generar Reporte");
     private JButton imprimirReporteBoton = new JButton ("Imprimir Reporte");
     private JButton goHomeReportPanel = new JButton (new ImageIcon ("images/homeBoton.png"));
@@ -87,6 +88,9 @@ public class SwingComponents {
     private JTextField totalVentaTextField = new JTextField ();
     private JButton terminarVentaBoton = new JButton (new ImageIcon ("images/terminarVentaBoton.png"));
 
+    public JScrollPane getContenedorReportTable() {
+        return contenedorReportTable;
+    }
 
     public JLabel getReportTitleLabel() {
         return reportTitleLabel;
