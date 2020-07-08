@@ -2,6 +2,7 @@ package com.company.JPanels;
 
 import com.company.JFrames.AddInventoryFrame;
 import com.company.JFrames.AddProductFrame;
+import com.company.JFrames.ReportFrame;
 import com.company.JFrames.VentaMainFrame;
 import com.company.MainData;
 import com.company.SwingComponents;
@@ -70,6 +71,13 @@ public class InitialPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 parentFrame.dispose();
                 new VentaMainFrame(allComponents,allData);
+            }
+        });
+        allComponents.getInitSettingsButton ().addActionListener (new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                parentFrame.dispose ();
+                new ReportFrame (allComponents,allData);
             }
         });
     }

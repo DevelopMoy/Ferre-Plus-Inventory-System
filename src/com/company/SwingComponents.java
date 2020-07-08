@@ -50,6 +50,14 @@ public class SwingComponents {
     private JButton cancelarAddProductButton = new JButton ("Cancelar");
     private JButton homeButtonAddProduct = new JButton(new ImageIcon ("images/homeBoton.png"));
 
+    //ReportPanel
+    private JLabel reportTitleLabel = new JLabel (new ImageIcon ("images/reportTitle.png"));
+    private JTable reportTable = new JTable ();
+    private JButton generarReporteBoton = new JButton ("Generar Reporte");
+    private JButton imprimirReporteBoton = new JButton ("Imprimir Reporte");
+    private JButton goHomeReportPanel = new JButton (new ImageIcon ("images/homeBoton.png"));
+
+
     //SerachCompraPanel
     private JLabel searchTitle = new JLabel (new ImageIcon ("images/searchTitle.png"));
    private String[] aux = {"Nombre","Codigo"};
@@ -78,6 +86,27 @@ public class SwingComponents {
     private JLabel totalVentaLabel = new JLabel ("Total: ");
     private JTextField totalVentaTextField = new JTextField ();
     private JButton terminarVentaBoton = new JButton (new ImageIcon ("images/terminarVentaBoton.png"));
+
+
+    public JLabel getReportTitleLabel() {
+        return reportTitleLabel;
+    }
+
+    public JTable getReportTable() {
+        return reportTable;
+    }
+
+    public JButton getGenerarReporteBoton() {
+        return generarReporteBoton;
+    }
+
+    public JButton getImprimirReporteBoton() {
+        return imprimirReporteBoton;
+    }
+
+    public JButton getGoHomeReportPanel() {
+        return goHomeReportPanel;
+    }
 
     public JLabel getSearchTitle() {
         return searchTitle;
