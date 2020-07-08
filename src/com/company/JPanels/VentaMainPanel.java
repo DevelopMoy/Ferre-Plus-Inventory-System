@@ -1,5 +1,6 @@
 package com.company.JPanels;
 
+import com.company.JFrames.SearchCompraFrame;
 import com.company.MainData;
 import com.company.JFrames.MainWindow;
 import com.company.ProductTableModel;
@@ -153,6 +154,12 @@ public class VentaMainPanel extends JPanel {
     }
 
     private void configEvents (){
+        allComponents.getSearchVentaButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SearchCompraFrame(allComponents,allData);
+            }
+        });
         allComponents.getTerminarVentaBoton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
