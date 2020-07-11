@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="Ferre-Plus:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Ferre_Plus_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Ferre-Plus.jar">
+        <element id="module-output" name="Ferre-Plus" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/mysql-connector-java-8.0.20.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/swingx-all-1.6.4.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/miglayout-3.5.5.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/material-ui-swing-1.1.1_pre-release_6.1-jar-with-dependencies.jar" />
+    </root>
+  </artifact>
+</component>
